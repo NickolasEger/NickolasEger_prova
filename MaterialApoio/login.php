@@ -56,5 +56,9 @@ if($_SERVER['REQUEST_METHOD']== "POST"){
 
     <p><a href="recuperar_senha.php">Esqueci minha senha</a></p>
 
+    <adress>
+        Estudante: Nickolas Joseph da Silva Eger
+    </adress>
+
 </body>
 </html>
