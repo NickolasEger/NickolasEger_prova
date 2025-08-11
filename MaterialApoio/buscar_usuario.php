@@ -30,6 +30,42 @@ if($_SERVER["REQUEST METHOD"]=="POST" && !empty($_POST['busca'])){
     }
     $stmt->execute();
     $usuarios = $stmt->fetchALL(PDO::FETCH_ASSOC)
-
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Usuario</title>
+    <link rel = "stylesheet" href = "styles.css">
+</head>
+<body>
+    <h2>Lista de Usuários</h2>    
+
+<form action="buscar_usuario.php" method="POST">
+    <label for="Busca">Digite o ID ou NOME(opcional): </label>
+    <input type="text" id="busca" name="busca">
+</form>
+    <?php if(!empty($usuarios)): ?>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Ações</th>
+            </tr>
+
+            <?php foreach($usuarios): ?>
+
+            <tr>
+                <th
+            </tr>
+            
+
+
+
+
+</body>
+</html>
