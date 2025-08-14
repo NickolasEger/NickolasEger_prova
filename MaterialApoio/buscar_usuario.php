@@ -47,10 +47,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['busca'])){
 <form action="buscar_usuario.php" method="POST">
     <label for="busca">Digite o id ou nome(opcional): </label>
     <input type="text" id="busca" name="busca">
+    <button type="submit">Pesquisar</button>
 </form>
     <?php if(!empty($usuarios)):?>
 
-        <table>
+        <table border="1">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
