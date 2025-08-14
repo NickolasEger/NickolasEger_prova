@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     } else{
         echo "<script>alert('Erro ao cadastrado usuario';</script>";
     }
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
