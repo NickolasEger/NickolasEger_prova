@@ -43,9 +43,20 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <link rel = "stylesheet" href = "styles.css">
 </head>
 <body>
-    <h2>Excluir Usuario</h2>
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="cadastro_usuario.php">Cadastrar Usuário</a></li>
+            <li><a href="alterar_usuario.php">Alterar Usuário</a></li>
+            <li><a href="buscar_usuario.php">Buscar Usuário</a></li>
+            <li><a href="excluir_usuario.php">Excluir Usuário</a></li>
+            <li><a href="principal.php">Início</a></li>
+        </ul>
+    </nav>
+
+    <h2>Excluir Usuário</h2>
     <?php if(!empty($usuarios)): ?>
-        <table border="1">
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -60,15 +71,18 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                 <td><?= htmlspecialchars($usuario['email'])?></td>
                 <td><?= htmlspecialchars($usuario['id_perfil'])?></td>
                 <td>
-                    <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario'])?>" onclick="return confirm('Tem certeza que deseja excluir este usuario')">Excluir</a>
+                    <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario'])?>" 
+                       onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
+                       Excluir
+                    </a>
                 </td>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </table>
-    <?php else:?>
-        <p>Nenhum usuario encontrado</p>
+    <?php else: ?>
+        <p>Nenhum usuário encontrado</p>
     <?php endif; ?>
-
-    <a href="principal.php">Voltar</a>
 </body>
+</html>
+
 </html>

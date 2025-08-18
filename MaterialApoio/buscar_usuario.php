@@ -43,15 +43,27 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['busca'])){
     <link rel = "stylesheet" href = "styles.css">
 </head>
 <body>
-    <h2> Lista de Usuarios</h2>
-<form action="buscar_usuario.php" method="POST">
-    <label for="busca">Digite o id ou nome(opcional): </label>
-    <input type="text" id="busca" name="busca">
-    <button type="submit">Pesquisar</button>
-</form>
-    <?php if(!empty($usuarios)):?>
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="cadastro_usuario.php">Cadastrar Usuário</a></li>
+            <li><a href="alterar_usuario.php">Alterar Usuário</a></li>
+            <li><a href="buscar_usuario.php">Buscar Usuário</a></li>
+            <li><a href="excluir_usuario.php">Excluir Usuário</a></li>
+            <li><a href="principal.php">Início</a></li>
+        </ul>
+    </nav>
 
-        <table border="1">
+    <h2>Lista de Usuários</h2>
+
+    <form action="buscar_usuario.php" method="POST">
+        <label for="busca">Digite o ID ou nome (opcional): </label>
+        <input type="text" id="busca" name="busca">
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <?php if(!empty($usuarios)): ?>
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -59,25 +71,25 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['busca'])){
                 <th>Perfil</th>
                 <th>Ações</th>
             </tr>
-            <?php foreach($usuarios as $usuario):?>
-                <td><?=htmlspecialchars($usuario['id_usuario'])?></td>
-                <td><?=htmlspecialchars($usuario['nome'])?></td>
-                <td><?=htmlspecialchars($usuario['email'])?></td>
-                <td><?=htmlspecialchars($usuario['id_perfil'])?></td>
+            <?php foreach($usuarios as $usuario): ?>
+            <tr>
+                <td><?= htmlspecialchars($usuario['id_usuario']) ?></td>
+                <td><?= htmlspecialchars($usuario['nome']) ?></td>
+                <td><?= htmlspecialchars($usuario['email']) ?></td>
+                <td><?= htmlspecialchars($usuario['id_perfil']) ?></td>
                 <td>
-                    <a href="alterar_usuario.php?id=<?=htmlspecialchars($usuario['id_perfil'])?>">Alterar</a>
-
-                    <a href="excluir_usuario.php?id=<?=htmlspecialchars($usuario['id_perfil'])?>"  onclick="return confirm('Tem certeza que deseja excluir este usuario?')">Excluir</a>
+                    <a href="alterar_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']) ?>">Alterar</a>
+                    <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']) ?>" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</a>
                 </td>
             </tr>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </table>
-        <?php else:?>
-            <p>Nenhum usuario encontrado.</p>
-            <?php endif;?>
-            <a href="principal.php">Voltar</a>
-            <center>
-                <address> Nickolas Eger </address> 
-            </center>
+    <?php else: ?>
+        <p>Nenhum usuário encontrado.</p>
+    <?php endif; ?>
+
+    <center>
+        <address>Nickolas Eger</address>
+    </center>
 </body>
 </html>

@@ -39,16 +39,27 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <link rel = "stylesheet" href = "styles.css">
 </head>
 <body>
-    <h2>Cadastrar Usuario</h2>
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="cadastro_usuario.php">Cadastrar Usuário</a></li>
+            <li><a href="alterar_usuario.php">Alterar Usuário</a></li>
+            <li><a href="buscar_usuario.php">Buscar Usuário</a></li>
+            <li><a href="excluir_usuario.php">Excluir Usuário</a></li>
+            <li><a href="principal.php">Início</a></li>
+        </ul>
+    </nav>
+
+    <h2>Cadastrar Usuário</h2>
     <form action="cadastro_usuario.php" method="POST">
 
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
         
-        <label for="email">email:</label>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="senha">senha:</label>
+        <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required>
 
         <label for="id_perfil">Perfil:</label>
@@ -62,7 +73,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <button type="reset">Cancelar</button>
     </form>
 
-    <a href="principal.php">Voltar</a>
-    <center> <address> Nickolas Eger </address> </center>
+    <center><address>Nickolas Eger</address></center>
 </body>
 </html>
