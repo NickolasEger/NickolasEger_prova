@@ -257,8 +257,7 @@ table a:hover {
     background: #d93b4a;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
-/* Barra de navegação */
-/* Ajuste para dropdown dentro da navbar flex */
+
 .navbar .dropdown {
     position: relative;
 }
@@ -269,7 +268,7 @@ table a:hover {
     background-color: #444;
     border-radius: 6px;
     padding: 5px 0;
-    position: absolute;
+    position: center;
     top: 100%;
     left: 0;
     min-width: 180px;
