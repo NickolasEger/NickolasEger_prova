@@ -1,0 +1,88 @@
+<?php 
+session_start();
+require_once 'conexao.php';
+
+//VERIFICA SE O Cliente TEM PERMISSAO
+//SUPONDO QUE O 1 SEJA O ADMINISTRADOR   
+if($_SESSION['perfil']!=1){
+    echo "Acesso Negado!";
+    exit;
+}
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $endereco = $_POST['endereco'];
+    $id_perfil = $_POST['id_perfil'];
+
+    $sql="INSERT INTO cliente(nome,email,endereco,id_perfil) VALUES (:nome,:email,:endereco,:id_perfil)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nome',$nome);
+    $stmt->bindParam(':email',$email);
+    $stmt->bindParam(':endereco',$endereco);
+    $stmt->bindParam(':id_perfil',$id_perfil);
+
+    if($stmt->execute()){
+        echo "<script>alert('Cliente cadastrado com sucesso!');window.location.href='cadastro_cliente.php'</script>";
+    }else{
+        echo "<script>alert('Erro ao cadastrar o cliente!');</script>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar Cliente</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <ul>
+        <li class="dropdown">
+            <a href="#">Cadastros ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="cadastro_usuario.php">Usuário</a></li>
+                <li><a href="cadastro_perfil.php">Perfil</a></li>
+                <li><a href="cadastro_cliente.php">Cliente</a></li>
+                <li><a href="cadastro_fornecedor.php">Fornecedor</a></li>
+                <li><a href="cadastro_produto.php">Produto</a></li>
+                <li><a href="cadastro_funcionario.php">Funcionário</a></li>
+            </ul>
+        </li>
+        <li><a href="principal.php">Início</a></li>
+    </ul>
+</nav>
+
+
+<h2>Cadastrar Usuário</h2>
+<form action="cadastro_cliente.php" method="POST">
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="endereco">Endereço:</label>
+    <input type="text" id="endereco" name="endereco" required>
+
+    <label for="id_perfil">Perfil:</label>
+    <select id="id_perfil" name="id_perfil">
+        <option value="1">Administrador</option>
+        <option value="2">Secretaria</option>
+        <option value="3">Almoxarife</option>
+        <option value="4">Cliente</option>
+    </select>
+
+    <button type="submit">Salvar</button>
+    <button type="reset">Cancelar</button>
+</form>
+
+<center><address>Nickolas Eger</address></center>
+
+</body>
+</html>
