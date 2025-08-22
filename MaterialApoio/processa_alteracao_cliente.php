@@ -11,16 +11,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $nome_cliente = $_POST['nome_cliente'];
     $email = $_POST['email'];
     $endereco = $_POST['endereco'];
-    $id_funcionario_responsavel = $_POST['id_funcionario_responsavel'];
+    $id_funcionario_responsavel = isset($_POST['id_funcionario_responsavel']) ? $_POST['id_funcionario_responsavel'] : null;
     $telefone = $_POST['telefone'];
+    $nova_senha = !empty($_POST['nova_senha'])? password_hash($_POST['nova_senha'],PASSWORD_DEFAULT): null;
 
     
     if($nova_senha){
-        $sql = "UPDATE cliente SET nome_cliente=:nome_cliente,email=:email,id_funcionario_responsavel=:id_funcionario_responsavel,endereco=:endereco,telefone=:telefone WHERE id_cliente - :id";
+        $sql = "UPDATE cliente SET nome_cliente = :nome_cliente,email = :email,id_funcionario_responsavel = :id_funcionario_responsavel,endereco = :endereco,telefone = :telefone WHERE id_cliente = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':senha',$nova_senha);
     } else{
-        $sql="UPDATE cliente SET nome_cliente = :nome_cliente,email = :email,id_funcionario_responsavel=:id_funcionario_responsavel,endereco=:endereco,telefone=:telefone WHERE id_cliente = :id";
+        $sql = "UPDATE cliente SET nome_cliente=:nome_cliente,email=:email,id_funcionario_responsavel=:id_funcionario_responsavel,endereco=:endereco,telefone=:telefone WHERE id_cliente = :id";
         $stmt = $pdo->prepare($sql);
     }
     $stmt = $pdo->prepare($sql);
