@@ -10,20 +10,22 @@ if($_SESSION['perfil']!=1){
 }
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $nome = $_POST['nome'];
+    $nome_cliente = $_POST['nome'];
     $email = $_POST['email'];
     $endereco = $_POST['endereco'];
-    $id_perfil = $_POST['id_perfil'];
+    $id_funcionario_responsavel = $_POST['id_funcionario_responsavel'];
+    $telefone = $_POST['telefone'];
 
-    $sql="INSERT INTO cliente(nome,email,endereco,id_perfil) VALUES (:nome,:email,:endereco,:id_perfil)";
+    $sql="INSERT INTO cliente(nome_cliente,email,endereco,id_funcionario_responsavel,telefone) VALUES (:nome_cliente,:email,:endereco,:id_funcionario_responsavel,:telefone)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome',$nome);
+    $stmt->bindParam(':nome_cliente',$nome_cliente);
     $stmt->bindParam(':email',$email);
     $stmt->bindParam(':endereco',$endereco);
-    $stmt->bindParam(':id_perfil',$id_perfil);
+    $stmt->bindParam(':telefone',$telefone);
+    $stmt->bindParam(':id_funcionario_responsavel',$id_funcionario_responsavel);
 
     if($stmt->execute()){
-        echo "<script>alert('Cliente cadastrado com sucesso!');window.location.href='cadastro_cliente.php'</script>";
+        echo "<script>alert('Cliente cadastrado com sucesso!');</script>";
     }else{
         echo "<script>alert('Erro ao cadastrar o cliente!');</script>";
     }
@@ -41,27 +43,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <body>
 
 <nav class="navbar">
-    <ul>
-        <li class="dropdown">
-            <a href="#">Cadastros ▾</a>
-            <ul class="dropdown-menu">
-                <li><a href="cadastro_usuario.php">Usuário</a></li>
-                <li><a href="cadastro_perfil.php">Perfil</a></li>
-                <li><a href="cadastro_cliente.php">Cliente</a></li>
-                <li><a href="cadastro_fornecedor.php">Fornecedor</a></li>
-                <li><a href="cadastro_produto.php">Produto</a></li>
-                <li><a href="cadastro_funcionario.php">Funcionário</a></li>
-            </ul>
-        </li>
-        <li><a href="principal.php">Início</a></li>
-    </ul>
-</nav>
+        <ul>
+            <li><a href="cadastro_cliente.php">Cadastrar Cliente</a></li>
+            <li><a href="alterar_cliente.php">Alterar Cliente</a></li>
+            <li><a href="buscar_cliente.php">Buscar Cliente</a></li>
+            <li><a href="excluir_cliente.php">Excluir Cliente</a></li>
+            <li><a href="principal.php">Início</a></li>
+        </ul>
+    </nav>
 
 
-<h2>Cadastrar Usuário</h2>
+<h2>Cadastrar Cliente</h2>
 <form action="cadastro_cliente.php" method="POST">
 
-    <label for="nome">Nome:</label>
+    <label for="nome_cliente">Nome:</label>
     <input type="text" id="nome" name="nome" required>
     
     <label for="email">Email:</label>
@@ -70,8 +65,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <label for="endereco">Endereço:</label>
     <input type="text" id="endereco" name="endereco" required>
 
-    <label for="id_perfil">Perfil:</label>
-    <select id="id_perfil" name="id_perfil">
+    <label for="telefone">Telefone:</label>
+    <input type="text" id="telefone" name="telefone" required>
+
+    <label for="id_funcionario_responsavel">Funcionario:</label>
+    <select id="id_funcionario_responsavel" name="id_funcionario_responsavel">
         <option value="1">Administrador</option>
         <option value="2">Secretaria</option>
         <option value="3">Almoxarife</option>
