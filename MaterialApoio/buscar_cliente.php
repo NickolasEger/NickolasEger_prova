@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['busca'])){
     <link rel = "stylesheet" href = "styles.css">
 </head>
 <body>
-    <nav class="navbar">
+<nav class="navbar">
         <ul>
             <li><a href="cadastro_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="alterar_cliente.php">Alterar Cliente</a></li>
